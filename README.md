@@ -9,6 +9,10 @@ I'd like to see a list of my bookmarks
 As a user
 To be able to save a bookmark for later
 I want be able to add a bookmark to my bookmarks
+
+As a user 
+So that I can remove a bookmark from my bookmarks
+I want to delete a bookmark
 ```
 <br>
 
