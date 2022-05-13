@@ -11,8 +11,6 @@ class Bookmark
 
   def self.all
 
-    # array = []
-
     if ENV['RACK_ENV'] == 'test'
       con = PG.connect :dbname => 'bookmark_manager_test'
     else
@@ -25,12 +23,6 @@ class Bookmark
       Bookmark.new(id: bookmark['id'], url: bookmark['url'], title: bookmark['title'])
     end
     
-    # rs.each do |row|
-    #   array << row['url']
-    # end
-    
-    # return array
-    
   end
   
   def self.create(url:, title:)
@@ -40,7 +32,7 @@ class Bookmark
       con = PG.connect :dbname => 'bookmark_manager'
     end     
     
-    res = con.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING id, title, url;")
+    res = con.exec_params("INSERT INTO bookmarks (url, title) VALUES($1, $2) RETURNING id, title, url;", [url, title])
 
     Bookmark.new(id: res[0]['id'], title: res[0]['title'], url: res[0]['url'])
   end
