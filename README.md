@@ -13,6 +13,10 @@ I want be able to add a bookmark to my bookmarks
 As a user 
 So that I can remove a bookmark from my bookmarks
 I want to delete a bookmark
+
+As a user
+So I can change a bookmark from my bookmarks
+I want to update a bookmark
 ```
 <br>
 

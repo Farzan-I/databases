@@ -1,4 +1,4 @@
- feature '.delete' do
+feature '.delete' do
   scenario 'user can remove a bookmark from bookmarks' do
     Bookmark.create(url: 'http://www.google.com', title: 'Google')
     visit '/bookmarks'

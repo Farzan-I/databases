@@ -4,7 +4,7 @@ require 'database_helpers'
 describe Bookmark do
   describe '.all' do
     it 'returns a list of bookmarks' do
-      con = PG.connect(dbname: 'bookmark_manager_test')
+      # con = PG.connect(dbname: 'bookmark_manager_test')
 
       bookmark = Bookmark.create(url: "http://www.makersacademy.com", title: 'Makers Academy')
       Bookmark.create(url: "http://www.bbc.co.uk", title: 'BBC')
@@ -41,4 +41,30 @@ describe Bookmark do
       expect(Bookmark.all.length).to eq 0
     end
   end
+
+  describe '.update' do
+    it 'updates the bookmark with the given data' do
+      bookmark = Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+      updated_bookmark = Bookmark.update(id: bookmark.id, url: 'http://www.snakersacademy.com', title: 'Snakers Academy')
+  
+      expect(updated_bookmark).to be_a Bookmark
+      expect(updated_bookmark.id).to eq bookmark.id
+      expect(updated_bookmark.title).to eq 'Snakers Academy'
+      expect(updated_bookmark.url).to eq 'http://www.snakersacademy.com'
+    end
+  end
+
+  describe '.find' do
+    it 'returns the requested bookmark object' do
+      bookmark = Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+
+      res = Bookmark.find(id: bookmark.id)
+
+      expect(res).to be_a Bookmark
+      expect(res.id).to eq bookmark.id
+      expect(res.title).to eq 'Makers Academy'
+      expect(res.url).to eq 'http://www.makersacademy.com'
+    end
+  end
+
 end
