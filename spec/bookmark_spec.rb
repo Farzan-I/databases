@@ -31,9 +31,14 @@ describe Bookmark do
       expect(bookmark.url).to eq 'http://www.example.org'
       expect(bookmark.title).to eq 'Example title'
     end
+  end 
+
+  describe '.delete' do
+    it 'deletes a specific bookmark from bookmarks' do
+      bookmark = Bookmark.create(url: 'http://www.example.org', title: 'Example title')
+      Bookmark.delete(id: bookmark.id)
+
+      expect(Bookmark.all.length).to eq 0
+    end
   end
 end
-
-# Test drive a refactor of the code to use a Model, that returns the list of bookmarks.
-# You'll probably want to create a Bookmark model that responds to the class method .all with a hard-coded array of Bookmark instances.
-# # for instance method, . for class methods in describe fields
