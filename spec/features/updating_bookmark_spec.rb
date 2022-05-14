@@ -11,7 +11,7 @@ feature 'Updating a bookmark' do
     fill_in('title', with: "Github")
     click_button("Submit")
 
-    expect(current_path).to eq "/bookmarks"
+    expect(current_path).to eq "/bookmarks/"
     expect(page).not_to have_link("Google", href: "http://www.google.com")
     expect(page).to have_link("Github", href: "http://www.github.com")
   end

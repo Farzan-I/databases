@@ -48,7 +48,7 @@ class Bookmark
   end
 
   def self.update(id:, url:, title:)
-    if ENV['ENVIRONMENT'] == 'test'
+    if ENV['RACK_ENV'] == 'test'
       con = PG.connect(dbname: 'bookmark_manager_test')
     else
       con = PG.connect(dbname: 'bookmark_manager')
@@ -61,7 +61,7 @@ class Bookmark
   end
 
   def self.find(id:)
-    if ENV['ENVIRONMENT'] == 'test'
+    if ENV['RACK_ENV'] == 'test'
       con = PG.connect(dbname: 'bookmark_manager_test')
     else
       con = PG.connect(dbname: 'bookmark_manager')
